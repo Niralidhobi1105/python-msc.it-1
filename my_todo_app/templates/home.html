@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Task Management</title>
+</head>
+
+<body>
+
+<h1>Task Management</h1>
+
+<!-- Add Task -->
+
+<form action="/add" method="POST">
+
+    Name:
+    <input type="text" name="name" required>
+
+    <br><br>
+
+    Status:
+    <select name="status">
+        <option value="Pending">Pending</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+    </select>
+
+    <br><br>
+
+    Due Date:
+    <input type="date" name="due_date" required>
+
+    <br><br>
+
+    <button type="submit">Add Task</button>
+
+</form>
+
+<br>
+
+<!-- Get Tasks -->
+
+<a href="/get">
+    <button type="button">Get Tasks</button>
+</a>
+
+<br><br>
+
+<!-- Tasks Table -->
+
+<h2>Tasks</h2>
+
+<table border="1" cellpadding="10">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Due Date</th>
+        <th>Action</th>
+    </tr>
+
+    {% for task in tasks %}
+
+    <tr>
+
+        <td>{{ task["id"] }}</td>
+
+        <td>{{ task["name"] }}</td>
+
+        <td>{{ task["status"] }}</td>
+
+        <td>{{ task["due_date"] }}</td>
+
+        <td>
+            <a href="/delete/{{ task['id'] }}">
+                <button type="button">Delete</button>
+            </a>
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+</body>
+
+</html>
+
